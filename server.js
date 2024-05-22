@@ -30,10 +30,10 @@ app.use(morgan("dev"));
 
 app.use("/api/v1/auth", require("./routes/userRoutes"));
 app.use("/api/v1/posts", require("./routes/postRoutes"));
-app.get("/",(res,req)=>{
+app.get("/", (req,res)=>{
   res.status(200).send({
-    "success":"true",
-    "msg":"node server running"
+    "success":true,
+    "msg":"Node Serevr Running"
   })
 })
 //PORT
