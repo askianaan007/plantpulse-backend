@@ -90,6 +90,47 @@ const getWaterLevelController = async (req, res) => {
   }
 };
 
+const updateWaterLevelFromCircuitController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { waterLevel } = req.body;
+
+    // Validate input
+    if (waterLevel == null) {
+      return res.status(400).send({
+        success: false,
+        message: "Please provide a water level",
+      });
+    }
+
+    const post = await postModel.findByIdAndUpdate(
+      id,
+      { waterLevel },
+      { new: true }
+    );
+
+    if (!post) {
+      return res.status(404).send({
+        success: false,
+        message: "Post not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Water level updated successfully",
+      post,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in updating water level from circuit",
+      error,
+    });
+  }
+};
+
 // GET ALL POSTS
 const getAllPostsContoller = async (req, res) => {
   try {
@@ -194,4 +235,5 @@ module.exports = {
   updatePostController,
   fillWaterLevelController,
   getWaterLevelController,
+  updateWaterLevelFromCircuitController,
 };

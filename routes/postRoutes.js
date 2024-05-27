@@ -8,6 +8,7 @@ const {
   updatePostController,
   fillWaterLevelController,
   getWaterLevelController,
+  updateWaterLevelFromCircuitController,
 } = require("../controllers/postController");
 
 //router object
@@ -21,6 +22,9 @@ router.put("/fill-water-level/:id", fillWaterLevelController);
 
 // GET water level for a post
 router.get("/water-level/:id", getWaterLevelController);
+
+// POST water level from circuit
+router.post("/update-water-level/:id", updateWaterLevelFromCircuitController);
 
 //GET ALL POSTs
 router.get("/get-all-post", getAllPostsContoller);
